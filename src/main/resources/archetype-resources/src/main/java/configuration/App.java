@@ -1,6 +1,7 @@
 package ${package}.configuration;
 
 import org.apache.camel.CamelContext;
+import org.apache.camel.spring.SpringRouteBuilder;
 import org.apache.camel.spring.boot.CamelSpringBootApplicationController;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -10,7 +11,7 @@ import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
 import org.springframework.context.ApplicationContext;
 
 @EnableAutoConfiguration
-public class App {
+public class App extends SpringRouteBuilder {
 
 	private static Logger LOG = LoggerFactory.getLogger(App.class);
 
@@ -31,5 +32,10 @@ public class App {
 		CamelSpringBootApplicationController applicationController = applicationContext
 				.getBean(CamelSpringBootApplicationController.class);
 		applicationController.blockMainThread();
+	}
+	
+	@Override
+	public void configure() throws Exception {
+		
 	}
 }
